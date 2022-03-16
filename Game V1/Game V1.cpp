@@ -125,6 +125,8 @@ int main() {
 	else {
 		printf_s("Nhap ten nguoi choi 1 :   ");
 		scanf_s("%s", &Ten1, sizeof(Ten1));
+		char Ten2[30] = "AI";
+		
 
 
 		do
