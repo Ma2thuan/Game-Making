@@ -64,7 +64,11 @@ int main() {
 	char Ten1[30], Ten2[30];
 	int SoNN = 0;
 
-	printf_s("Hay chon che do choi : ");
+
+	printf_s("\nHUAMAN VS HUMAN (1) \n");
+	printf_s("\nHUAMAN VS AI (2) \n");
+
+	printf_s("\nHay chon che do choi : ");
 	scanf_s("%d", &Chon);
 
 
