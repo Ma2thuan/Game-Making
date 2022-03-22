@@ -77,7 +77,7 @@ int main() {
 
 	if (Chon == 1) {
 		printf_s("Nhap ten nguoi choi 1 :   "); fgetc(stdin);
-		fgets(Ten1, sizeof(Ten1), stdin); fflush(stdin); Ten1[strlen(Ten1) - 1] = '\0';
+		fgets(Ten1, sizeof(Ten1), stdin);  Ten1[strlen(Ten1) - 1] = '\0';
 
 		printf_s("Nhap ten nguoi choi 2 :   "); 
 		fgets(Ten2, sizeof(Ten2), stdin); Ten2[strlen(Ten2) - 1] = '\0';
@@ -130,7 +130,7 @@ int main() {
 
 	else {
 		printf_s("Nhap ten nguoi choi 1 :   "); fgetc(stdin);
-		fgets(Ten1, sizeof(Ten1), stdin); fflush(stdin); Ten1[strlen(Ten1) - 1] = '\0';
+		fgets(Ten1, sizeof(Ten1), stdin);  Ten1[strlen(Ten1) - 1] = '\0';
 		char Ten2[50] = "AI";
 		
 
