@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <conio.h>
 #include <stdlib.h>
+#include <string.h>
+
 
 
 
@@ -9,9 +11,8 @@ char square[10] = { 'i', '1' ,'2' ,'3' ,'4' ,'5' ,'6' ,'7' ,'8' ,'9' };
 void BangChoi(char Ten1[], char Ten2[]) {
 
 	printf_s("\n\n\t\t\t\t\t\t     TIC-TAC-TOE\n\n\n");
-	printf_s("\t\t\t\t\t\t %s (X) VS %s (O)\n\n\n", Ten1, Ten2);
-
-
+	printf_s("\t\t\t\t\t\t %s (X) VS %s (O) \n\n\n", Ten1,Ten2);
+	
 	printf_s("\t\t\t\t\t              |     |             \n");
 	printf_s("\t\t\t\t\t          %c   |  %c  |  %c  \n", square[1], square[2], square[3]);
 
@@ -61,11 +62,11 @@ int main() {
 
 	int NguoiChoi = 1, Danh = 0, i = 0, Chon = 0, z = 0;
 	char Mark = 0, Mark2 = 0;
-	char Ten1[30], Ten2[30];
+	char Ten1[50], Ten2[50];
 	int SoNN = 0;
 
 
-	printf_s("\nHUAMAN VS HUMAN (1) \n");
+	printf_s("\nHUMAN VS HUMAN (1) \n");
 	printf_s("\nHUAMAN VS AI (2) \n");
 
 	printf_s("\nHay chon che do choi : ");
@@ -75,10 +76,11 @@ int main() {
 	//NGUOI CHOI VS NGUOI CHOI
 
 	if (Chon == 1) {
-		printf_s("Nhap ten nguoi choi 1 :   ");
-		scanf_s("%s", &Ten1, sizeof(Ten1));
-		printf_s("Nhap ten nguoi choi 2 :   ");
-		scanf_s("%s", &Ten2, sizeof(Ten2));
+		printf_s("Nhap ten nguoi choi 1 :   "); fgetc(stdin);
+		fgets(Ten1, sizeof(Ten1), stdin); fflush(stdin); Ten1[strlen(Ten1) - 1] = '\0';
+
+		printf_s("Nhap ten nguoi choi 2 :   "); 
+		fgets(Ten2, sizeof(Ten2), stdin); Ten2[strlen(Ten2) - 1] = '\0';
 
 		do
 		{
@@ -127,9 +129,9 @@ int main() {
 
 
 	else {
-		printf_s("Nhap ten nguoi choi 1 :   ");
-		scanf_s("%s", &Ten1, sizeof(Ten1));
-		char Ten2[30] = "AI";
+		printf_s("Nhap ten nguoi choi 1 :   "); fgetc(stdin);
+		fgets(Ten1, sizeof(Ten1), stdin); fflush(stdin); Ten1[strlen(Ten1) - 1] = '\0';
+		char Ten2[50] = "AI";
 		
 
 
