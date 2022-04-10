@@ -44,7 +44,7 @@ int Minimax(int square[10], int player) {
 
 
 	int move  = -1;
-	int score = -2;
+	int score = -2; 
 	
 
 	for (int i = 1; i < 10; ++i) {
@@ -62,14 +62,37 @@ int Minimax(int square[10], int player) {
 	return score;
 }
 
+void AImove(int square[10]) {
 
+	int move = -1;
+	int score = -2;
 
+	for (int i = 1; i < 10; ++i) {
+		if (square[i] == 0) {
+			square[i] = 1;
+			int tempScore = -Minimax(square, -1);
+			square[i] = 0;
+			if (tempScore > score) {
+				score = tempScore;
+				move = i;
+			}
+		}
+	}
+	//Lay buoc di hop ly nhat
+	square[move] = 1;
+}
 
+void NguoiChoimove(int square[10]) {
 
+	int move = 0;
+	do {
+		printf("\nNhap buoc di : ([1..9]): ");
+		scanf_s("%d", &move);
+		printf("\n");
+	} while (move >= 9 || move < 0 && square[move] == 0);
+	square[move] = -1;
 
-
-
-
+}
 
 
 
@@ -80,5 +103,25 @@ int main() {
 	scanf_s("%d", &LuotDi);
 	printf_s("\n");
 
-
+	unsigned turn;
+	for (turn = 0; turn < 9 && DieuKien(square) == 0; ++turn) {
+		if ((turn + LuotDi) % 2 == 0)
+			AImove(square);
+		else {
+			BangChoi(square);
+			NguoiChoimove(square);
+		}
+	}
+	switch (DieuKien(square)) {
+	case 0:
+		printf("Uiiiiiiiis tiec the nho -_-\n");
+		break;
+	case 1:
+		BangChoi(square);
+		printf("Chuc ban may man lan sau ;))\n");
+		break;
+	case -1:
+		printf("Cheat roi chu ji :)))\n");
+		break;
+	}
 }
