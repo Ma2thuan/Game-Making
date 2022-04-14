@@ -5,18 +5,14 @@
 
 enum  state
 {
-	MENU = 0, INGAME, GUIDING, INFORMATION, GAMEOVER ,EXIT
+	MENU = 0, INGAME, INFORMATION, GAMEOVER, EXIT
 }state;
-
-
-
-
 
 
 char TrangThai(int i) {
 	switch (i) {
-	case -1: 
-		return 'X';       
+	case -1:
+		return 'X';
 	case 0:
 		return ' ';
 	case 1:
@@ -26,7 +22,7 @@ char TrangThai(int i) {
 
 //1 là AI || -1 la player
 
-void BangChoi( int b[10]) {
+void BangChoi(int b[10]) {
 
 	printf_s("\n\n\t\t\t\t\t\t    TIC-TAC-TOE\n\n\n");
 
@@ -44,7 +40,7 @@ void BangChoi( int b[10]) {
 	printf_s("\t\t\t\t\t          %c   |  %c  |  %c \n", TrangThai(b[7]), TrangThai(b[8]), TrangThai(b[9]));
 }
 
-int DieuKien(int square[10] ) {
+int DieuKien(int square[10]) {
 
 	unsigned DieuKienWin[8][3] = { {1,2,3},{4,5,6},{7,8,9},{1,4,7},{2,5,8},{3,6,9},{1,5,9},{3,5,7} };
 	//Unsigned luon tra ve gia tri duong (+)
@@ -64,9 +60,9 @@ int Minimax(int square[10], int player) {
 	if (NguoiThang != 0) return NguoiThang * player;
 
 
-	int move  = -1;
-	int score = -2; 
-	
+	int move = -1;
+	int score = -2;
+
 
 	for (int i = 1; i < 10; ++i) {
 		if (square[i] == 0) {
@@ -112,7 +108,7 @@ void NguoiChoimove(int square[10]) {
 		printf("\nNhap buoc di : ([1..9]): ");
 		scanf_s("%d", &move);
 		printf("\n");
-	} while (move > 9 || move < 1 || square[move] != 0 );
+	} while (move > 9 || move < 1 || square[move] != 0);
 	square[move] = -1;
 
 }
@@ -124,7 +120,7 @@ void ingame() {
 
 	int square[10] = { 0,0,0,0,0,0,0,0,0,0 };
 
-	printf_s("\tAI : O VS Player : X\n\n Ban muon di (1)st hay (2)nd");
+	printf_s("\n\n\t\t\t\t\t\tAI : (O) VS Player : (X)\n\n\n\n Ban muon di (1)st hay (2)nd : ");
 	int LuotDi = 0;
 	scanf_s("%d", &LuotDi);
 	printf_s("\n");
@@ -134,6 +130,7 @@ void ingame() {
 	for (int turn = 0; turn < 9 && DieuKien(square) == 0; ++turn) {
 		if ((turn + LuotDi) % 2 == 0)
 			AImove(square);
+
 		else {
 			BangChoi(square);
 			NguoiChoimove(square);
@@ -141,13 +138,14 @@ void ingame() {
 	}
 	switch (DieuKien(square)) {
 	case 0:
-		printf("Uiiiiiiiis tiec the nho -_-\n");
+		printf("Hoa -_-\n");
 		getchar(); getchar();
 		system("cls");
 		state = GAMEOVER;
 		break;
 	case 1:
-		printf("Chuc ban may man lan sau ;))\n");
+		BangChoi(square);
+		printf("Thua roi ay! ;))\n");
 		getchar(); getchar();
 		system("cls");
 		state = GAMEOVER;
@@ -165,22 +163,23 @@ void ingame() {
 //Menu cua tro choi
 
 void menu() {
-	int x=0;
-	printf_s("1.Play\n");
-	printf_s("2.Rules\n");
-	printf_s("3.Exit\n");
-	
-	printf_s("Choose : "); scanf_s("%d", &x);
+	int x = 0;
+	printf_s("\n\n\t\t\t\t\t    T I C  -- T A C -- T O E -- G A M E\n\n\n");
+	printf_s("\t\t\t\t\t\t\t1.Play\n\n");
+	printf_s("\t\t\t\t\t\t\t2.Rules\n\n");
+	printf_s("\t\t\t\t\t\t\t3.Exit\n\n\n\n\n");
+
+	printf_s("\t\t\t\t\t       Choose : "); scanf_s("%d", &x);
 	switch (x) {
-	case 1 :
+	case 1:
 		system("cls");
 		state = INGAME;
 		break;
-	case 2 :
+	case 2:
 		system("cls");
 		state = INFORMATION;
 		break;
-	case 3 : 
+	case 3:
 		system("cls");
 		state = EXIT;
 		break;
@@ -198,7 +197,25 @@ void info() {
 	printf_s("\n2. You are X and the computer  is O. Players take turns putting their marks in empty squares.\n");
 	printf_s("\n3. The first player to get 3 of her or his marks in a row (up, down, across, or diagonally) is the winner.\n");
 	printf_s("\n4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie.\n");
+	printf_s("\nHere how the board look like !!\n");
+
+	printf_s("\t\t\t\t\t              |     |             \n");
+	printf_s("\t\t\t\t\t          1   |  2  |  3  \n");
+
+	printf_s("\t\t\t\t\t         _____|_____|_____  \n");
+	printf_s("\t\t\t\t\t              |     |    \n");
+
+	printf_s("\t\t\t\t\t          4   |  5  | 6 \n");
+
+	printf_s("\t\t\t\t\t         _____|_____|_____\n");
+	printf_s("\t\t\t\t\t              |     |    \n");
+
+	printf_s("\t\t\t\t\t          7   |  8  |  9 \n");
+
+
 	printf_s("\nPress any key to continue!!\n");
+
+
 	getchar(); getchar();
 	system("cls");
 	state = MENU;
@@ -209,17 +226,19 @@ void info() {
 
 void over() {
 	int x = 0;
-	printf_s("\nWould you like to play again!!\n");
-	printf_s("\n1.Bring it on!!\n");
-	printf_s("\n2.Nahhhhhhhh!!\n");
+	printf_s("\n\t\t\t\t\t\t\Would you like to play again!!\n\n");
+	printf_s("\n\t\t\t\t\t\t1.Choi chu!!\n\n");
+	printf_s("\n\t\t\t\t\t\t2.Thoiiiiiii!\n\n");
+
+	printf_s("\t\t\t\t       Choose : ");
 	scanf_s("%d", &x);
 
 	switch (x) {
-	case 1 : 
+	case 1:
 		system("cls");
 		state = MENU;
 		break;
-	case 2 : 
+	case 2:
 		system("cls");
 		state = EXIT;
 		break;
@@ -247,15 +266,15 @@ int main() {
 		case INGAME:
 			ingame();
 			break;
-		
+
 		case INFORMATION:
 			info();
 			break;
-			
-		case GAMEOVER :
+
+		case GAMEOVER:
 			over();
 			break;
-		case EXIT :
+		case EXIT:
 			exit();
 			break;
 		}
