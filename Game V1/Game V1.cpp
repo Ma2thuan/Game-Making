@@ -5,7 +5,7 @@
 
 enum  state
 {
-	MENU = 0, INGAME, INFORMATION, GAMEOVER, EXIT
+	LOADING = 0, MENU , INGAME, INFORMATION, GAMEOVER, EXIT
 }state;
 
 
@@ -112,6 +112,47 @@ void NguoiChoimove(int square[10]) {
 	square[move] = -1;
 
 }
+
+//Man hinh load
+
+void loading()
+{
+
+	// Su dung gia tri ASCII de tao ra ky hieu
+	// loading bar
+
+	char a = 177, b = 219;
+	int load = 1000;
+
+	printf("\n\n\n\n");
+	printf("\n\n\n\n\t\t\t\t\t  Loading X and O.....\n\n");
+	printf("\t\t\t\t\t");
+
+	// In ra thanh load
+	for (int i = 0; i < 26; i++)
+		printf("%c", a);
+
+	// Dua con tro ve vi tri dau thanh load
+	
+	printf("\r");
+	printf("\t\t\t\t\t");
+
+	// Nhich thanh load
+	for (int i = 0; i < 26; i++) {
+		printf("%c", b);
+		if (load > 50)
+			load = load - 50;
+		// Thoi gian load giam dan
+		Sleep(load);
+	}
+	printf_s("\n\n\n\t\t\t\t\tPress any key to continue!!");
+		getchar();
+		system("cls");
+	state = MENU;
+}
+
+
+
 
 
 // Man hinh chinh cua game
@@ -254,12 +295,15 @@ void exit() {
 
 int main() {
 
-	state = MENU;
+	state = LOADING;
 
 	while (1)
 	{
 		switch (state)
 		{
+		case  LOADING:
+			loading();
+			break;
 		case MENU:
 			menu();
 			break;
