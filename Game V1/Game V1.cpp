@@ -5,7 +5,7 @@
 
 enum  state
 {
-	LOADING = 0, MENU , INGAME, INFORMATION, GAMEOVER, EXIT
+	LOADING = 0, MENU, INGAME, INFORMATION, GAMEOVER, EXIT
 }state;
 
 
@@ -42,8 +42,8 @@ void BangChoi(int b[10]) {
 
 int DieuKien(int square[10]) {
 
-	unsigned DieuKienWin[8][3] = { {1,2,3},{4,5,6},{7,8,9},{1,4,7},{2,5,8},{3,6,9},{1,5,9},{3,5,7} };
-	//Unsigned luon tra ve gia tri duong (+)
+	int  DieuKienWin[8][3] = { {1,2,3},{4,5,6},{7,8,9},{1,4,7},{2,5,8},{3,6,9},{1,5,9},{3,5,7} };
+	
 	for (int i = 0; i < 8; ++i) {
 		if (square[DieuKienWin[i][0]] != 0 &&
 			square[DieuKienWin[i][0]] == square[DieuKienWin[i][1]] &&
@@ -133,7 +133,7 @@ void loading()
 		printf("%c", a);
 
 	// Dua con tro ve vi tri dau thanh load
-	
+
 	printf("\r");
 	printf("\t\t\t\t\t");
 
@@ -146,8 +146,8 @@ void loading()
 		Sleep(load);
 	}
 	printf_s("\n\n\n\t\t\t\t\tPress any key to continue!!");
-		getchar();
-		system("cls");
+	getchar();
+	system("cls");
 	state = MENU;
 }
 
@@ -295,7 +295,7 @@ void exit() {
 
 int main() {
 
-	state = LOADING;
+	state = INGAME;
 
 	while (1)
 	{
